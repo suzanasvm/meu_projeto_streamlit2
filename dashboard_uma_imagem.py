@@ -7,9 +7,6 @@ from io import BytesIO
 client = storage.Client.from_service_account_info(
     st.secrets["gcp_service_account"]
 )
-import streamlit as st
-
-st.write(st.secrets.keys())
 
 bucket_nome = "bucket-copa"
 arquivo = "imagens_jogadores/imagem_20.jpg"
@@ -19,9 +16,7 @@ blob = bucket.blob(arquivo)
 
 imagem_bytes = blob.download_as_bytes()
 
-imagem = Image.open(
-    BytesIO(imagem_bytes)
-)
+imagem = Image.open(BytesIO(imagem_bytes))
 
 st.image(
     imagem,
